@@ -18,7 +18,7 @@ plugins {
 
 apply plugin:"com.vaadin"
 
-defaultTasks("clean", "build")
+defaultTasks("clean", "vaadinPrepareFrontend", "vaadinBuildFrontend", "build")
 
 repositories {
     jcenter()
