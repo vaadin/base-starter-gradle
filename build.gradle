@@ -1,0 +1,37 @@
+plugins {
+    id 'war'
+    id 'org.gretty' version '3.0.1'
+//    id("com.vaadin")
+}
+
+defaultTasks("clean", "build")
+
+repositories {
+    jcenter()
+}
+
+gretty {
+    contextPath = "/"
+    servletContainer = "jetty9.4"
+}
+
+dependencies {
+    // Vaadin 14
+//    compile("com.vaadin:vaadin-core:14.1.16") {
+        // Webjars are only needed when running in Vaadin 13 compatibility mode
+//        listOf("com.vaadin.webjar", "org.webjars.bowergithub.insites",
+//                "org.webjars.bowergithub.polymer", "org.webjars.bowergithub.polymerelements",
+//                "org.webjars.bowergithub.vaadin", "org.webjars.bowergithub.webcomponents")
+//                .forEach { exclude(group = it) }
+//    }
+//    compile("com.vaadin:flow-server-compatibility-mode:2.1.1")
+    providedCompile("javax.servlet:javax.servlet-api:3.1.0")
+
+    // logging
+    // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
+    compile("org.slf4j:slf4j-simple:1.7.30")
+
+    // test support
+//    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.19")
+}
+
