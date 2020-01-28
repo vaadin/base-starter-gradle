@@ -22,9 +22,9 @@ Currently the Vaadin Gradle Plugin needs to be installed from sources. Please fo
 steps below to get it installed:
 
 ```bash
-$ git clone https://github.com/vaadin/vaadin-gradle-plugin
-$ cd vaadin-gradle-plugin
-$ git checkout feature/18
+git clone https://github.com/vaadin/vaadin-gradle-plugin
+cd vaadin-gradle-plugin
+git checkout feature/18
 ```
 
 Edit the `/build.gradle` file: at line 43 change the line from
@@ -42,7 +42,7 @@ version = '0.0.1'
 Now run:
 
 ```bash
-$ ./gradlew clean publishToMavenLocal -x test
+./gradlew clean publishToMavenLocal -x test
 ```
 
 The command will fail, BUT there will be a jar file installed in your local Maven repository:
@@ -68,7 +68,7 @@ Now you can open the [http://localhost:8080](http://localhost:8080) with your br
 Simply run the following command in this repo:
 
 ```bash
-$ ./gradlew
+./gradlew
 ```
 
 That will build this app in production mode as a WAR archive; please find the
@@ -76,9 +76,9 @@ WAR file in `build/libs/gradle-project-examples.war`. You can run the WAR file
 by using [Jetty Runner](https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-runner):
 
 ```bash
-$ cd build/libs/
-$ wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-runner/9.4.26.v20200117/jetty-runner-9.4.26.v20200117.jar
-$ java -jar jetty-runner-9.4.26.v20200117.jar gradle-project-examples.war
+cd build/libs/
+wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-runner/9.4.26.v20200117/jetty-runner-9.4.26.v20200117.jar
+java -jar jetty-runner-9.4.26.v20200117.jar gradle-project-examples.war
 ```
 
 Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
@@ -98,7 +98,7 @@ click the "Configure" button and point Intellij to the Tomcat directory.
 Now make sure Vaadin is configured to be run in development mode - run:
 
 ```bash
-$ ./gradlew clean vaadinPrepareFrontend
+./gradlew clean vaadinPrepareFrontend
 ```
 
 * Select the "Tomcat" launch configuration and hit Debug (the green bug button).
@@ -113,7 +113,7 @@ If Tomcat fails to start with `Error during artifact deployment. See server log 
 Make sure Vaadin is configured to be run in development mode - run:
 
 ```bash
-$ ./gradlew clean vaadinPrepareFrontend
+./gradlew clean vaadinPrepareFrontend
 ```
 
 TODO task is missing - investigate
