@@ -1,8 +1,22 @@
+// later on we will be able to get rid of this buildscript{} block and simply include
+// the plugin via id("com.vaadin")
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        mavenLocal()
+    }
+    dependencies {
+        classpath("com.vaadin:vaadin-gradle-plugin:0.0.1")
+    }
+}
+
 plugins {
     id 'war'
     id 'org.gretty' version '3.0.1'
-//    id("com.vaadin")
+//    id("com.vaadin")  // uncomment when the plugin is published in the Gradle plugin repository
 }
+
+apply plugin:"com.vaadin"
 
 defaultTasks("clean", "build")
 
