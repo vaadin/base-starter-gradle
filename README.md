@@ -5,9 +5,10 @@ mode using Gradle.
 
 Prerequisites:
 * Java 8 or higher
-* node.js and npm installed. You can simply install those:
+* node.js and npm installed locally. You can simply install those:
   * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
   * Linux: `sudo apt install npm`
+  * TODO what to do in the CI environment
 * Git
 * (Optionally): Intellij Ultimate
 
