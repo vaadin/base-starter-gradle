@@ -58,7 +58,7 @@ The Vaadin Gradle Plugin is now ready to be used.
 Run the following command in this repo:
 
 ```bash
-$ ./gradlew clean vaadinPrepareFrontend appRun
+./gradlew clean vaadinPrepareFrontend appRun
 ```
 
 Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
