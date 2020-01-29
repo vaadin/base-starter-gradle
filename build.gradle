@@ -50,6 +50,7 @@ dependencies {
     compile("org.slf4j:slf4j-simple:1.7.30")
 
     // test support
-//    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.19")
+    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.19")
+    testCompile("junit:junit:4.12")
 }
 
