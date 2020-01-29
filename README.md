@@ -72,13 +72,13 @@ Simply run the following command in this repo:
 ```
 
 That will build this app in production mode as a WAR archive; please find the
-WAR file in `build/libs/gradle-skeleton-starter-flow.war`. You can run the WAR file
+WAR file in `build/libs/skeleton-starter-gradle.war`. You can run the WAR file
 by using [Jetty Runner](https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-runner):
 
 ```bash
 cd build/libs/
 wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-runner/9.4.26.v20200117/jetty-runner-9.4.26.v20200117.jar
-java -jar jetty-runner-9.4.26.v20200117.jar gradle-skeleton-starter-flow.war
+java -jar jetty-runner-9.4.26.v20200117.jar skeleton-starter-gradle.war
 ```
 
 Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
@@ -92,7 +92,7 @@ click "Add New Configuration" (the upper-left button which looks like a plus sig
 then select Tomcat Server, Local. In the Server tab, the Application Server will be missing,
 click the "Configure" button and point Intellij to the Tomcat directory.
   * Still in the launch configuration, in the "Deployment" tab, click the upper-left + button,
-    select "Artifact" and select `gradle-skeleton-starter-flow.war (exploded)`.
+    select "Artifact" and select `skeleton-starter-gradle.war (exploded)`.
   * Still in the launch configuration, name the configuration "Tomcat" and click the "Ok" button.
 
 Now make sure Vaadin is configured to be run in development mode - run:
@@ -106,7 +106,7 @@ Now make sure Vaadin is configured to be run in development mode - run:
 If Tomcat fails to start with `Error during artifact deployment. See server log for details.`, please:
 * Go and vote for [IDEA-178450](https://youtrack.jetbrains.com/issue/IDEA-178450).
 * Then, kill Tomcat by pressing the red square button.
-* Then, open the launch configuration, "Deployment", remove the (exploded) war, click + and select `gradle-skeleton-starter-flow.war`.
+* Then, open the launch configuration, "Deployment", remove the (exploded) war, click + and select `skeleton-starter-gradle.war`.
 
 ## Running/Debugging In Intellij Community With Gretty in Development Mode
 
