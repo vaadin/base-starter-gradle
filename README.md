@@ -116,4 +116,13 @@ Make sure Vaadin is configured to be run in development mode - run:
 ./gradlew clean vaadinPrepareFrontend
 ```
 
-TODO task is missing - investigate
+In Intellij, open the right Gradle tab, then go into *Tasks* / *gretty*, right-click the
+*appRun* task and select Debug. Gretty will now start in debug mode, and will auto-deploy
+any changed resource or class.
+
+There are couple of downsides:
+* Even if started in Debug mode, debugging your app won't work.
+* Pressing the red square "Stop" button will not kill the server and will leave it running.
+  Instead, you have to focus the console and press any key - that will kill Gretty cleanly.
+* If Gretty says "App already running", there is something running on port 8080. See above
+  on how to kill Gretty cleanly.
