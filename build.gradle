@@ -29,6 +29,11 @@ gretty {
     servletContainer = "jetty9.4"
 }
 
+// example of how to configure the Gradle Vaadin Plugin
+vaadinFlow {
+    optimizeBundle = true
+}
+
 dependencies {
     // Vaadin 14
     compile("com.vaadin:vaadin-core:14.1.16") {
