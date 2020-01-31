@@ -3,8 +3,6 @@
 buildscript {
     repositories {
         gradlePluginPortal()
-		// in case you use local plugin builds
-		mavenLocal()
 		// pre-releases from Vaadin:
 		maven {
 			url "https://repo.vaadin.com/nexus/content/repositories/vaadin-prereleases-201912/"
@@ -58,4 +56,3 @@ dependencies {
     testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.19")
     testCompile("junit:junit:4.12")
 }
-

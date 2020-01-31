@@ -8,38 +8,9 @@ Prerequisites:
 * node.js and npm installed locally. You can simply install those:
   * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
   * Linux: `sudo apt install npm`
-  * TODO what to do in the CI environment
+  * The CI environment without node.js is not yet supported, but support for automatic node.js downloading is coming: [#22](https://github.com/vaadin/vaadin-gradle-plugin/issues/22).
 * Git
 * (Optionally): Intellij Ultimate
-
-> *Note*: this is an early preview which requires some extra steps to get the Vaadin
-> Gradle Plugin. Soon the plugin will be deployed in the Gradle plugin repo which will
-> simplify this tutorial radically.
-
-## Installing Vaadin Gradle Plugin
-
-Currently the Vaadin Gradle Plugin is still in early phases. This project uses a pre-release repository with the latest pre-release build, but you might want to customise the plugin your self. With following steps you'll get a local version of it built and to be used by this project:
-
-```bash
-git clone https://github.com/vaadin/vaadin-gradle-plugin
-cd vaadin-gradle-plugin
-```
-
-Now run:
-
-```bash
-./gradlew clean publishToMavenLocal -x test -PBUILD_VERSION=0.0.1
-```
-
-The command will fail, BUT there will be a jar file installed in your local Maven repository:
-
-```
-$HOME/.m2/repository/com/vaadin/vaadin-gradle-plugin/0.0.1/vaadin-gradle-plugin-0.0.1.jar
-```
-
-Edit the build.gradle file in this project and adjust the plugin version to be 0.0.1.
-
-Your custom build of Vaadin Gradle Plugin is now ready to be used.
 
 ## Running With Gretty In Development Mode
 
