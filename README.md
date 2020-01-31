@@ -25,7 +25,6 @@ steps below to get it installed:
 git clone https://github.com/vaadin/vaadin-gradle-plugin
 cd vaadin-gradle-plugin
 ```
-`
 
 Now run:
 
