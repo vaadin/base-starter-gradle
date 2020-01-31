@@ -3,14 +3,14 @@
 buildscript {
     repositories {
         gradlePluginPortal()
-		// pre-releases from Vaadin:
-		maven {
-			url "https://repo.vaadin.com/nexus/content/repositories/vaadin-prereleases-201912/"
-		}
-	}
-	dependencies {
-		classpath("com.vaadin:vaadin-gradle-plugin:0.2.0")
-	}
+        // pre-releases from Vaadin:
+        maven {
+            url "https://repo.vaadin.com/nexus/content/repositories/vaadin-prereleases-201912/"
+        }
+    }
+    dependencies {
+        classpath("com.vaadin:vaadin-gradle-plugin:0.2.0")
+    }
 }
 
 plugins {
@@ -19,7 +19,7 @@ plugins {
 //    id("com.vaadin")  // uncomment when the plugin is published in the Gradle plugin repository
 }
 
-apply plugin:"com.vaadin"
+apply plugin: "com.vaadin"
 
 defaultTasks("clean", "vaadinBuildFrontend", "build")
 
@@ -42,8 +42,8 @@ dependencies {
     compile("com.vaadin:vaadin-core:14.1.16") {
 //         Webjars are only needed when running in Vaadin 13 compatibility mode
         ["com.vaadin.webjar", "org.webjars.bowergithub.insites",
-                "org.webjars.bowergithub.polymer", "org.webjars.bowergithub.polymerelements",
-                "org.webjars.bowergithub.vaadin", "org.webjars.bowergithub.webcomponents"]
+         "org.webjars.bowergithub.polymer", "org.webjars.bowergithub.polymerelements",
+         "org.webjars.bowergithub.vaadin", "org.webjars.bowergithub.webcomponents"]
                 .forEach { group -> exclude(group: group) }
     }
     providedCompile("javax.servlet:javax.servlet-api:3.1.0")
