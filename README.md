@@ -1,14 +1,15 @@
 # Vaadin Gradle Skeleton Starter
 
 This project demoes the possibility of having Vaadin 14 project in npm+webpack
-mode using Gradle.
+mode using Gradle. Please see the [Vaadin Gradle Plugin Page](https://github.com/vaadin/vaadin-gradle-plugin)
+for documentation.
 
 Prerequisites:
 * Java 8 or higher
-* node.js and npm installed locally. You can simply install those:
+* node.js and npm. You can either use the Vaadin Gradle plugin to install it for
+  you - `./gradlew vaadinPrepareNode` (handy for the CI), or you can install it to your OS:
   * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
   * Linux: `sudo apt install npm`
-  * The CI environment without node.js is not yet supported, but support for automatic node.js downloading is coming: [#22](https://github.com/vaadin/vaadin-gradle-plugin/issues/22).
 * Git
 * (Optionally): Intellij Ultimate
 
@@ -41,6 +42,15 @@ java -jar jetty-runner-9.4.26.v20200117.jar base-starter-gradle.war
 ```
 
 Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
+
+### Building In Production On CI
+
+Usually the CI images will not have node.js+npm available. However, Vaadin Gradle Plugin
+can download it for you. To build your app for production in CI, just run:
+
+```bash
+./gradlew clean vaadinPrepareNode vaadinBuildFrontend build
+```
 
 ## Running/Debugging In Intellij Ultimate With Tomcat in Development Mode
 
