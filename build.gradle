@@ -33,7 +33,7 @@ gretty {
 }
 
 // example of how to configure the Gradle Vaadin Plugin
-vaadinFlow {
+vaadin {
     optimizeBundle = true
 }
 
