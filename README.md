@@ -7,7 +7,7 @@ for documentation.
 Prerequisites:
 * Java 8 or higher
 * node.js and npm. You can either use the Vaadin Gradle plugin to install it for
-  you - `./gradlew vaadinPrepareNode` (handy for the CI), or you can install it to your OS:
+  you (the `vaadinPrepareNode` task, handy for the CI), or you can install it to your OS:
   * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
   * Linux: `sudo apt install npm`
 * Git
@@ -22,6 +22,9 @@ Run the following command in this repo:
 ```
 
 Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
+
+> If you do not have node.js installed locally, please run `./gradlew vaadinPrepareNode` once.
+> The task will download a local node.js distribution to your project folder, into the `node/` folder.
 
 ## Building In Production Mode
 
