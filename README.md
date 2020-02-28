@@ -18,7 +18,7 @@ Prerequisites:
 Run the following command in this repo:
 
 ```bash
-./gradlew clean vaadinPrepareFrontend appRun
+./gradlew clean appRun
 ```
 
 Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
@@ -31,7 +31,7 @@ Now you can open the [http://localhost:8080](http://localhost:8080) with your br
 Simply run the following command in this repo:
 
 ```bash
-./gradlew
+./gradlew -Pvaadin.productionMode
 ```
 
 That will build this app in production mode as a WAR archive; please find the
@@ -52,7 +52,7 @@ Usually the CI images will not have node.js+npm available. However, Vaadin Gradl
 can download it for you. To build your app for production in CI, just run:
 
 ```bash
-./gradlew clean vaadinPrepareNode vaadinBuildFrontend build
+./gradlew clean vaadinPrepareNode build -Pvaadin.productionMode
 ```
 
 ## Running/Debugging In Intellij Ultimate With Tomcat in Development Mode

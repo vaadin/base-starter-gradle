@@ -1,10 +1,10 @@
 plugins {
     id 'war'
     id 'org.gretty' version '3.0.1'
-    id 'com.vaadin' version '0.5.0'
+    id 'com.vaadin' version '0.6.0'
 }
 
-defaultTasks("clean", "vaadinBuildFrontend", "build")
+defaultTasks("clean", "build")
 
 repositories {
     jcenter()
