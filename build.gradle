@@ -1,6 +1,6 @@
 plugins {
     id 'war'
-    id 'org.gretty' version '3.0.1'
+    id 'org.gretty' version '3.0.3'
     id 'com.vaadin' version '0.6.0'
 }
 
@@ -21,7 +21,7 @@ vaadin {
 }
 
 dependencies {
-    implementation enforcedPlatform('com.vaadin:vaadin-bom:14.1.23')
+    implementation enforcedPlatform('com.vaadin:vaadin-bom:14.1.28')
 
     // Vaadin 14
     implementation("com.vaadin:vaadin-core") {
