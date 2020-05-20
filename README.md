@@ -6,8 +6,8 @@ for documentation.
 
 Prerequisites:
 * Java 8 or higher
-* node.js and npm. You can either use the Vaadin Gradle plugin to install it for
-  you (the `vaadinPrepareNode` task, handy for the CI), or you can install it to your OS:
+* node.js and npm. You can either let the Vaadin Gradle plugin to install nodejs and
+  npm/pnpm for you automatically, or you can install it to your OS:
   * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
   * Linux: `sudo apt install npm`
 * Git
@@ -22,9 +22,6 @@ Run the following command in this repo:
 ```
 
 Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
-
-> If you do not have node.js installed locally, please run `./gradlew vaadinPrepareNode` once.
-> The task will download a local node.js distribution to your project folder, into the `node/` folder.
 
 ## Building In Production Mode
 
@@ -48,11 +45,12 @@ Now you can open the [http://localhost:8080](http://localhost:8080) with your br
 
 ### Building In Production On CI
 
-Usually the CI images will not have node.js+npm available. However, Vaadin Gradle Plugin
-can download it for you. To build your app for production in CI, just run:
+Usually the CI images will not have node.js+npm available. Luckily Vaadin
+will download nodejs and npm/pnpm automatically, there is nothing
+you need to do. To build your app for production in CI, just run:
 
 ```bash
-./gradlew clean vaadinPrepareNode build -Pvaadin.productionMode
+./gradlew clean build -Pvaadin.productionMode
 ```
 
 ## Running/Debugging In Intellij Ultimate With Tomcat in Development Mode

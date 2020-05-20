@@ -1,7 +1,7 @@
 plugins {
     id 'war'
     id 'org.gretty' version '3.0.3'
-    id 'com.vaadin' version '0.6.0'
+    id 'com.vaadin' version '0.7.0'
 }
 
 defaultTasks("clean", "build")
@@ -17,11 +17,11 @@ gretty {
 
 // example of how to configure the Gradle Vaadin Plugin
 vaadin {
-    optimizeBundle = true
+    pnpmEnable = true
 }
 
 dependencies {
-    implementation enforcedPlatform('com.vaadin:vaadin-bom:14.1.28')
+    implementation enforcedPlatform('com.vaadin:vaadin-bom:14.2.0')
 
     // Vaadin 14
     implementation("com.vaadin:vaadin-core") {
