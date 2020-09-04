@@ -1,7 +1,7 @@
 plugins {
     id 'war'
     id 'org.gretty' version '3.0.3'
-    id 'com.vaadin' version '0.8.0'
+    id 'com.vaadin' version '0.17.0.0'
 }
 
 defaultTasks("clean", "build")
@@ -21,7 +21,7 @@ vaadin {
 }
 
 dependencies {
-    implementation enforcedPlatform('com.vaadin:vaadin-bom:14.3.4')
+    implementation enforcedPlatform('com.vaadin:vaadin-bom:17.0.0')
 
     // Vaadin 14
     implementation("com.vaadin:vaadin-core") {
