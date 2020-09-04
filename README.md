@@ -1,6 +1,6 @@
 # Vaadin Gradle Skeleton Starter
 
-This project demoes the possibility of having Vaadin 14 project in npm+webpack
+This project demoes the possibility of having Vaadin project in npm+webpack
 mode using Gradle. Please see the [Vaadin Gradle Plugin Page](https://github.com/vaadin/vaadin-gradle-plugin)
 for documentation.
 
@@ -12,6 +12,13 @@ Prerequisites:
   * Linux: `sudo apt install npm`
 * Git
 * (Optionally): Intellij Ultimate
+
+## Vaadin Versions
+
+* The [v14](https://github.com/vaadin/base-starter-gradle) branch (the default one)
+  contains the example app for Vaadin 14
+* The [master](https://github.com/vaadin/base-starter-gradle/tree/master) branch
+  contains the example app for Vaadin 17
 
 ## Running With Gretty In Development Mode
 
