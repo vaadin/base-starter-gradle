@@ -17,8 +17,7 @@ Prerequisites:
 
 * The [v14](https://github.com/vaadin/base-starter-gradle) branch (the default one)
   contains the example app for Vaadin 14
-* The [master](https://github.com/vaadin/base-starter-gradle/tree/master) branch
-  contains the example app for Vaadin 17
+* See other branches for other Vaadin versions.
 
 ## Running With Gretty In Development Mode
 
