@@ -8,3 +8,5 @@ webpack.generated.js
 target
 out
 pnpmfile.js
+.npmrc
+frontend/generated

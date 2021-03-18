@@ -1,14 +1,20 @@
+buildscript {
+    repositories {
+        maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
+    }
+}
+
 plugins {
     id 'war'
     id 'org.gretty' version '3.0.3'
-    id 'com.vaadin' version '0.17.0.1'
+    id 'com.vaadin' version '0.20.0.0.alpha3'
 }
 
 defaultTasks("clean", "build")
 
 repositories {
+    mavenCentral()
     jcenter()
-    maven { url = "https://maven.vaadin.com/vaadin-prereleases" }
 }
 
 gretty {
@@ -22,7 +28,7 @@ vaadin {
 }
 
 dependencies {
-    implementation enforcedPlatform('com.vaadin:vaadin-bom:19.0.0.alpha1')
+    implementation enforcedPlatform('com.vaadin:vaadin-bom:19.0.1')
 
     // Vaadin
     implementation("com.vaadin:vaadin-core")
