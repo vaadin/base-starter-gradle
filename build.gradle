@@ -7,7 +7,7 @@ buildscript {
 plugins {
     id 'war'
     id 'org.gretty' version '3.0.3'
-    id 'com.vaadin' version '0.20.0.0.alpha3'
+    id 'com.vaadin' version '20.0.0.alpha6'
 }
 
 defaultTasks("clean", "build")
@@ -22,13 +22,15 @@ gretty {
     servletContainer = "jetty9.4"
 }
 
-// example of how to configure the Gradle Vaadin Plugin
+// The following pnpmEnable = true is not needed as pnpm is used by default,
+// this is just an example of how to configure the Gradle Vaadin Plugin:
+// for more configuraion options please see: https://vaadin.com/docs/latest/guide/start/gradle/#all-options
 vaadin {
     pnpmEnable = true
 }
 
 dependencies {
-    implementation enforcedPlatform('com.vaadin:vaadin-bom:19.0.1')
+    implementation enforcedPlatform("com.vaadin:vaadin-bom:$vaadinVersion")
 
     // Vaadin
     implementation("com.vaadin:vaadin-core")
