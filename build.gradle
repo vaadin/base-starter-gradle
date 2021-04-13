@@ -22,7 +22,7 @@ vaadin {
 }
 
 dependencies {
-    implementation enforcedPlatform('com.vaadin:vaadin-bom:14.5.1')
+    implementation enforcedPlatform("com.vaadin:vaadin-bom:$vaadinVersion")
 
     // Vaadin 14
     implementation("com.vaadin:vaadin-core") {
