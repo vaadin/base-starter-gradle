@@ -14,7 +14,7 @@ defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
-    jcenter()
+    maven { setUrl("https://maven.vaadin.com/vaadin-addons") }
 }
 
 gretty {
