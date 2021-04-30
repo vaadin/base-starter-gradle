@@ -8,7 +8,7 @@ defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
-    jcenter()
+    jcenter() // jcenter is deprecated, however the Gretty plugin still uses stuff from jcenter: https://github.com/gretty-gradle-plugin/gretty/issues/192
 }
 
 gretty {
