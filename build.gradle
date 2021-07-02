@@ -10,7 +10,7 @@ plugins {
     id 'com.vaadin' version '20.0.3'
 }
 
-defaultTasks("clean", "build")
+defaultTasks("build")
 
 repositories {
     mavenCentral()
