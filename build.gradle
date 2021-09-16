@@ -1,12 +1,13 @@
 buildscript {
     repositories {
         maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
 }
 
 plugins {
     id 'war'
-    id 'org.gretty' version '3.0.4'
+    id 'org.gretty' version '3.0.6'
     id 'com.vaadin'
 }
 
@@ -14,7 +15,6 @@ defaultTasks("build")
 
 repositories {
     mavenCentral()
-    jcenter() // jcenter is deprecated, however the Gretty plugin still uses stuff from jcenter: https://github.com/gretty-gradle-plugin/gretty/issues/192
 }
 
 gretty {
