@@ -1,7 +1,7 @@
 plugins {
     id 'war'
     id 'org.gretty' version '3.0.6'
-    id 'com.vaadin' version '0.14.7.3'
+    id 'com.vaadin' version '0.14.7.5'
 }
 
 defaultTasks("clean", "build")
