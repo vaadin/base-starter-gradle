@@ -22,11 +22,11 @@ gretty {
     servletContainer = "jetty9.4"
 }
 
-// The following pnpmEnable = true is not needed as pnpm is used by default,
+// The following pnpmEnable = false is not needed as npm is used by default,
 // this is just an example of how to configure the Gradle Vaadin Plugin:
 // for more configuraion options please see: https://vaadin.com/docs/latest/guide/start/gradle/#all-options
 vaadin {
-    pnpmEnable = true
+    pnpmEnable = false
 }
 
 dependencies {
