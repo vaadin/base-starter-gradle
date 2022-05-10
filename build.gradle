@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+	    mavenCentral()
         maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
         maven { url "https://plugins.gradle.org/m2/" }
     }
