@@ -1,4 +1,5 @@
 build
+!**/dev-bundle/webapp/VAADIN/build
 .idea
 .gradle
 
