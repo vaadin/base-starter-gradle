@@ -4,16 +4,17 @@ This project demos the possibility of having Vaadin project in npm+webpack mode 
 Please see the [Starting a Vaadin project using Gradle](https://vaadin.com/docs/latest/guide/start/gradle) for the documentation.
 
 Prerequisites:
-* Java 8 or higher
-* node.js and npm. You can either let the Vaadin Gradle plugin to install `nodejs` and `npm/pnpm` for you automatically, or you can install it to your OS:
-  * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
-  * Linux: `sudo apt install npm`
+* Java 17 or higher
 * Git
 * (Optionally): Intellij Ultimate
+* (Optionally): Node.js and npm, if you have JavaScript/TypeScript customisations in your project. 
+  * You can either let the Vaadin Gradle plugin to install `Node.js` and `npm/pnpm` for you automatically, or you can install it to your OS:
+  * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
+  * Linux: `sudo apt install npm`
 
 ## Vaadin Versions
 
-* The [v14](https://github.com/vaadin/base-starter-gradle) branch (the default one) contains the example app for Vaadin 14
+* The [v24](https://github.com/vaadin/base-starter-gradle) branch (the default one) contains the example app for Vaadin latest version
 * See other branches for other Vaadin versions.
 
 ## Running With Gretty In Development Mode
@@ -40,8 +41,8 @@ by using [Jetty Runner](https://mvnrepository.com/artifact/org.eclipse.jetty/jet
 
 ```bash
 cd build/libs/
-wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-runner/9.4.26.v20200117/jetty-runner-9.4.26.v20200117.jar
-java -jar jetty-runner-9.4.26.v20200117.jar base-starter-gradle.war
+wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-runner/11.0.15/jetty-runner-11.0.15.jar
+java -jar jetty-runner-11.0.15.jar base-starter-gradle.war
 ```
 
 Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
@@ -57,7 +58,7 @@ To build your app for production in CI, just run:
 
 ## Running/Debugging In Intellij Ultimate With Tomcat in Development Mode
 
-* Download and unpack the newest [Tomcat 9](https://tomcat.apache.org/download-90.cgi).
+* Download and unpack the newest [Tomcat 10](https://tomcat.apache.org/download-10.cgi).
 * Open this project in Intellij Ultimate.
 * Click "Edit Launch Configurations", click "Add New Configuration" (the upper-left button which looks like a plus sign `+`), then select Tomcat Server, Local.
   In the Server tab, the Application Server will be missing, click the "Configure" button and point Intellij to the Tomcat directory.
