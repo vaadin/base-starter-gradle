@@ -8,7 +8,7 @@ buildscript {
 
 plugins {
     id 'war'
-    id 'org.gretty' version '4.0.3'
+    id 'org.gretty' version '4.1.1'
     id 'com.vaadin'
 }
 
@@ -37,9 +37,8 @@ dependencies {
 
     // Vaadin
     implementation("com.vaadin:vaadin-core")
-    providedCompile "javax.servlet:javax.servlet-api:3.1.0"
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
-    implementation "org.slf4j:slf4j-simple:1.7.30"
+    implementation "org.slf4j:slf4j-simple:2.0.7"
 }
