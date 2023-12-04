@@ -30,6 +30,9 @@ gretty {
 // for more configuraion options please see: https://vaadin.com/docs/latest/guide/start/gradle/#all-options
 vaadin {
     pnpmEnable = false
+    frontendHotdeploy = true
+    productionMode = true
+    forceProductionBuild = true
 }
 
 dependencies {
