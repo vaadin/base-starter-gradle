@@ -1,37 +1,148 @@
 name: Gradle
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest]
         java: [17]
 
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Set up JDK ${{ matrix.java }}
-      uses: actions/setup-java@v1
-      with:
-        java-version: ${{ matrix.java }}
-    - name: Cache Gradle packages
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts', 'gradle/wrapper/gradle-wrapper.properties', 'gradle.properties') }}
-    - name: Cache pnpm packages
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.vaadin
-          ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml', '**/package.json') }}
-    - name: Build with Gradle
-      run: ./gradlew clean build '-Pvaadin.productionMode' --stacktrace --info --no-daemon
+      - uses: actions/checkout@v1
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
 
+      - name: Pre-details
+        id: pre_details
+        run: |
+          packageChecksum=$(md5sum package.json)
+          packageStat=$(stat package.json | sed 's/$/\\n/' | tr -d '\n')
+          packageLockChecksum=$(md5sum package-lock.json || echo "File not found")
+          packageLockStat=$([[ -f package-lock.json ]] && stat package-lock.json | sed 's/$/\\n/' | tr -d '\n' || echo "File not found.")
+          echo $packageChecksum
+          echo "$packageStat"
+          echo $packageLockChecksum
+          echo "$packageLockStat"
+          echo "package=$packageChecksum" >> "$GITHUB_OUTPUT"
+          echo "packageStat=$packageStat" >> "$GITHUB_OUTPUT"
+          echo "packageLock=$packageLockChecksum" >> "$GITHUB_OUTPUT"
+          echo "packageLockStat=$packageLockStat" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          # The Gradle wrapper's version (already the default, putting it here to clarity)
+          gradle-version: wrapper
+          # Removing unused files from Gradle User Home before saving to cache (i.e. older versions of gradle)
+          gradle-home-cache-cleanup: true
+          # Cache downloaded JDKs in addition to the default directories.
+          gradle-home-cache-includes: |
+            caches
+            notifications
+            jdks
+          # Only write to the cache for builds on the 'main' and 'release' branches. (Default is 'main' only.)
+          # Builds on other branches will only read existing entries from the cache.
+          #cache-read-only: ${{ github.ref != 'refs/heads/main'  }}
+
+          # In our setup, we have `main` as the `source of truth`, but to avoid complications we will just
+          # allow cache writing from any branch.
+          cache-read-only: false
+
+      - name: Cache pnpm packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.vaadin
+            ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml', '**/package.json') }}
+
+      - name: Archive package.json and package-lock.json (pre build)
+        uses: actions/upload-artifact@v3
+        if: ${{ always() }}
+        with:
+          name: pre-build-package-json
+          path: |
+            package.json
+            package-lock.json
+
+
+
+      - name: Build with Gradle
+        run: ./gradlew clean build '-Pvaadin.productionMode' --stacktrace --debug --no-daemon --scan --build-cache -Dorg.gradle.caching.debug=true
+
+      - name: Archive package.json and package-lock.json (post build)
+        uses: actions/upload-artifact@v3
+        if: ${{ always() }}
+        with:
+          name: post-build-package-json
+          path: |
+            package.json
+            package-lock.json
+
+      - name: Post-details
+        id: post_details
+        run: |
+          packageChecksum=$(md5sum package.json)
+          packageStat=$(stat package.json | sed 's/$/\\n/' | tr -d '\n')
+          packageLockChecksum=$(md5sum package-lock.json || echo "File not found")
+          packageLockStat=$([[ -f package-lock.json ]] && stat package-lock.json | sed 's/$/\\n/' | tr -d '\n' || echo "File not found.")
+          echo $packageChecksum
+          echo "$packageStat"
+          echo $packageLockChecksum
+          echo "$packageLockStat"
+          echo "package=$packageChecksum" >> "$GITHUB_OUTPUT"
+          echo "packageStat=$packageStat" >> "$GITHUB_OUTPUT"
+          echo "packageLock=$packageLockChecksum" >> "$GITHUB_OUTPUT"
+          echo "packageLockStat=$packageLockStat" >> "$GITHUB_OUTPUT"
+          echo "packageLockStat=$packageLockStat" >> "$GITHUB_OUTPUT"
+
+
+      - name: Adding summary
+        run: |
+          echo '### Filesystem details' >> $GITHUB_STEP_SUMMARY
+          echo '' >> $GITHUB_STEP_SUMMARY
+          echo 'Workspace path:' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo '${{ github.workspace }}' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo 'Filesystem' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          fs=$(mount)
+          echo "$fs" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          echo '### Pre build details' >> $GITHUB_STEP_SUMMARY
+          echo '' >> $GITHUB_STEP_SUMMARY
+          echo 'Checksums: ' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo -e '${{ steps.pre_details.outputs.package }}' >> $GITHUB_STEP_SUMMARY
+          echo -e '${{ steps.pre_details.outputs.packageLock }}' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo '' >> $GITHUB_STEP_SUMMARY
+          echo 'File stats' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo -e '${{ steps.pre_details.outputs.packageStat }}' >> $GITHUB_STEP_SUMMARY
+          echo '' >> $GITHUB_STEP_SUMMARY
+          echo -e '${{ steps.pre_details.outputs.packageLockStat }}' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          echo '### Post build details' >> $GITHUB_STEP_SUMMARY
+          echo '' >> $GITHUB_STEP_SUMMARY
+          echo 'Checksums: ' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo -e '${{ steps.post_details.outputs.package }}' >> $GITHUB_STEP_SUMMARY
+          echo -e '${{ steps.post_details.outputs.packageLock }}' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo 'File stats' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo -e '${{ steps.post_details.outputs.packageStat }}' >> $GITHUB_STEP_SUMMARY
+          echo '' >> $GITHUB_STEP_SUMMARY
+          echo -e '${{ steps.post_details.outputs.packageLockStat }}' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
