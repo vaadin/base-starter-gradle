@@ -22,6 +22,7 @@ jobs:
 
       - name: Pre-details
         id: pre_details
+        if: false
         run: |
           packageChecksum=$(md5sum package.json)
           packageStat=$(stat package.json | sed 's/$/\\n/' | tr -d '\n')
@@ -69,7 +70,8 @@ jobs:
 
       - name: Archive package.json and package-lock.json (pre build)
         uses: actions/upload-artifact@v3
-        if: ${{ always() }}
+        if: false
+        #if: ${{ always() }}
         with:
           name: pre-build-package-json
           path: |
@@ -83,7 +85,8 @@ jobs:
 
       - name: Archive package.json and package-lock.json (post build)
         uses: actions/upload-artifact@v3
-        if: ${{ always() }}
+        if: false
+        #if: ${{ always() }}
         with:
           name: post-build-package-json
           path: |
@@ -92,6 +95,7 @@ jobs:
 
       - name: Post-details
         id: post_details
+        if: false
         run: |
           packageChecksum=$(md5sum package.json)
           packageStat=$(stat package.json | sed 's/$/\\n/' | tr -d '\n')
@@ -109,6 +113,7 @@ jobs:
 
 
       - name: Adding summary
+        if: false
         run: |
           echo '### Filesystem details' >> $GITHUB_STEP_SUMMARY
           echo '' >> $GITHUB_STEP_SUMMARY
