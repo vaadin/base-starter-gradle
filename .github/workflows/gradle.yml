@@ -62,7 +62,6 @@ jobs:
 
       - name: Cache pnpm packages
         uses: actions/cache@v2
-        if: false
         with:
           path: |
             ~/.vaadin
