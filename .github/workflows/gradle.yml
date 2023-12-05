@@ -60,7 +60,7 @@ jobs:
           GRADLE_BUILD_ACTION_CACHE_DEBUG_ENABLED: true
 
       - name: Cache pnpm packages
-        uses: actions/cache@v3
+        uses: actions/cache@v2
         with:
           path: |
             ~/.vaadin
