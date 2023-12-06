@@ -55,9 +55,13 @@ jobs:
           # In our setup, we have `main` as the `source of truth`, but to avoid complications we will just
           # allow cache writing from any branch.
           cache-read-only: false
-          cache-overwrite-existing: true
         env:
           GRADLE_BUILD_ACTION_CACHE_DEBUG_ENABLED: true
+
+      - name: Inspect gradle cache
+        id: inspect-gradle-cache
+        run: |
+          tree -a ~/.gradle/caches | tee -a "$GITHUB_OUTPUT"
 
       - name: Cache pnpm packages
         uses: actions/cache@v2
