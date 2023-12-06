@@ -91,7 +91,7 @@ jobs:
             ~/.gradle/caches/build-cache-1/*
 
       - name: Build with Gradle
-        run: ./gradlew build '-Pvaadin.productionMode' --stacktrace --info --no-daemon --build-cache -Dorg.gradle.caching.debug=true
+        run: ./gradlew clean build '-Pvaadin.productionMode' --stacktrace --info --no-daemon --build-cache -Dorg.gradle.caching.debug=true
 
       - name: Archive package.json and package-lock.json (post build)
         uses: actions/upload-artifact@v3
