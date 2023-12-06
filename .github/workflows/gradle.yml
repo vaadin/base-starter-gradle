@@ -61,7 +61,7 @@ jobs:
       - name: Inspect gradle cache
         id: inspect-gradle-cache
         run: |
-          tree -a ~/.gradle/caches | tee -a "$GITHUB_OUTPUT"
+          find ~/.gradle/caches/build-cache-1 \! -name "*.lock" \! -name "*.properties" -type f  | tee -a "$GITHUB_OUTPUT"
 
       - name: Cache pnpm packages
         uses: actions/cache@v2
