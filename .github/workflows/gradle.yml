@@ -19,7 +19,6 @@ jobs:
         with:
           distribution: temurin
           java-version: ${{ matrix.java }}
-          cache: gradle
 
       - name: Pre-details
         id: pre_details
@@ -39,7 +38,6 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-        if: false
         with:
           # The Gradle wrapper's version (already the default, putting it here to clarity)
           gradle-version: wrapper
@@ -93,7 +91,7 @@ jobs:
             ~/.gradle/caches/build-cache-1/*
 
       - name: Build with Gradle
-        run: ./gradlew build '-Pvaadin.productionMode' --stacktrace --debug --no-daemon --build-cache -Dorg.gradle.caching.debug=true
+        run: ./gradlew build '-Pvaadin.productionMode' --stacktrace --info --no-daemon --build-cache -Dorg.gradle.caching.debug=true
 
       - name: Archive package.json and package-lock.json (post build)
         uses: actions/upload-artifact@v3
