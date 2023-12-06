@@ -61,8 +61,8 @@ jobs:
       - name: Inspect gradle cache
         id: inspect-gradle-cache
         run: |          
-          find ~/.gradle/caches/build-cache-1 -not -name "*.lock" -not -name "*.properties" -type f
           if [[ -d ~/.gradle/caches/build-cache-1 ]]; then
+            find ~/.gradle/caches/build-cache-1 -not -name "*.lock" -not -name "*.properties" -type f
             ls -la ~/.gradle/caches/build-cache-1
             mkdir /tmp/my-test
             cd /tmp/my-test
