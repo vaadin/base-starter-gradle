@@ -42,7 +42,7 @@ jobs:
           # The Gradle wrapper's version (already the default, putting it here to clarity)
           gradle-version: wrapper
           # Removing unused files from Gradle User Home before saving to cache (i.e. older versions of gradle)
-          gradle-home-cache-cleanup: true
+          gradle-home-cache-cleanup: false
           # Cache downloaded JDKs in addition to the default directories.
           gradle-home-cache-includes: |
             caches
@@ -61,7 +61,10 @@ jobs:
       - name: Inspect gradle cache
         id: inspect-gradle-cache
         run: |
-          find ~/.gradle/caches/build-cache-1 -not -name "*.lock" -not -name "*.properties" -type f
+          find ~/.gradle/caches/build-cache-1 -not -name "*.lock" -not -name "*.properties" -type f          
+          mkdir /tmp/my-test
+          cd /tmp/my-test
+          cp ~/.gradle/caches/build-cache-1
 
       - name: Cache pnpm packages
         uses: actions/cache@v2
