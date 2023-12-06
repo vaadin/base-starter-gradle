@@ -88,7 +88,7 @@ jobs:
           path: |
             package.json
             package-lock.json
-            /tmp/my-test/*.packageJson
+            ~/.gradle/caches/build-cache-1/*
 
       - name: Build with Gradle
         run: ./gradlew build '-Pvaadin.productionMode' --stacktrace --debug --no-daemon --build-cache -Dorg.gradle.caching.debug=true
