@@ -62,12 +62,14 @@ jobs:
         id: inspect-gradle-cache
         run: |          
           find ~/.gradle/caches/build-cache-1 -not -name "*.lock" -not -name "*.properties" -type f
-          ls -la ~/.gradle/caches/build-cache-1
-          mkdir /tmp/my-test
-          cd /tmp/my-test
-          cp ~/.gradle/caches/build-cache-1/ef4f26bcd52d876c2af6c948c6af4fa7 my.tgz
-          tar zxvf my.tgz
-          stat *.packageJson
+          if [[ -d ~/.gradle/caches/build-cache-1 ]]; then
+            ls -la ~/.gradle/caches/build-cache-1
+            mkdir /tmp/my-test
+            cd /tmp/my-test
+            cp ~/.gradle/caches/build-cache-1/ef4f26bcd52d876c2af6c948c6af4fa7 my.tgz
+            tar zxvf my.tgz
+            find . -name "*.packageJson" -exec stat {}\;
+          fi
 
       - name: Cache pnpm packages
         uses: actions/cache@v2
