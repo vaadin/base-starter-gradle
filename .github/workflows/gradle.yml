@@ -64,7 +64,10 @@ jobs:
           find ~/.gradle/caches/build-cache-1 -not -name "*.lock" -not -name "*.properties" -type f
           ls -la ~/.gradle/caches/build-cache-1
           mkdir /tmp/my-test
-          cd /tmp/my-test          
+          cd /tmp/my-test
+          cp ~/.gradle/caches/build-cache-1/ef4f26bcd52d876c2af6c948c6af4fa7 my.tgz
+          tar zxvf my.tgz
+          stat *.packageJson
 
       - name: Cache pnpm packages
         uses: actions/cache@v2
@@ -82,8 +85,7 @@ jobs:
           path: |
             package.json
             package-lock.json
-
-
+            /tmp/my-test/*.packageJson
 
       - name: Build with Gradle
         run: ./gradlew build '-Pvaadin.productionMode' --stacktrace --debug --no-daemon --build-cache -Dorg.gradle.caching.debug=true
