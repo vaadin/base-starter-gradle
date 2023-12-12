@@ -38,10 +38,24 @@ vaadin {
 dependencies {
     implementation enforcedPlatform("com.vaadin:vaadin-bom:$vaadinVersion")
 
+    compileOnly("com.vaadin:flow-gradle-plugin:$vaadinVersion")
     // Vaadin
     implementation("com.vaadin:vaadin-core")
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
     implementation "org.slf4j:slf4j-simple:2.0.7"
+}
+
+import com.vaadin.gradle.VaadinPrepareFrontendTask
+
+tasks.withType(VaadinPrepareFrontendTask).configureEach {t ->
+    try {
+        t.outputs.previousOutputFiles.forEach { f ->
+            println "${f.name} ### ${f.size()}"
+        }
+    } catch (Exception ex) {}
+        //t.outputs.file(file(new File(project.projectDir, "/package.json")))
+    //        .withPropertyName('outputProperties$vaadin_gradle_plugin.packageJson')
+    //        .optional()
 }
