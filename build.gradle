@@ -4,6 +4,9 @@ buildscript {
         maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
         maven { url "https://plugins.gradle.org/m2/" }
     }
+    configurations.classpath {
+        exclude group: 'com.vaadin', module: 'hilla-engine-core'
+    }
 }
 
 plugins {
@@ -36,7 +39,9 @@ dependencies {
     implementation enforcedPlatform("com.vaadin:vaadin-bom:$vaadinVersion")
 
     // Vaadin
-    implementation("com.vaadin:vaadin-core")
+    implementation("com.vaadin:vaadin-core") {
+        exclude group: 'com.vaadin', module: 'hilla-dev'
+    }
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
