@@ -18,6 +18,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: ${{ matrix.java }}
+    - name: Set Vaadin license
+      run: |
+        TB_LICENSE=${{ secrets.TB_LICENSE }}
+        mkdir -p ~/.vaadin/
+        echo '{"username":"'`echo $TB_LICENSE | cut -d / -f1`'","proKey":"'`echo $TB_LICENSE | cut -d / -f2`'"}' > ~/.vaadin/proKey
     - name: Cache Gradle packages
       uses: actions/cache@v2
       with:
@@ -32,9 +37,6 @@ jobs:
           ~/.vaadin
           ~/.pnpm-store
         key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml', '**/package.json') }}
-    - uses: ./.github/actions/setup
-      with:
-        tb-license: ${{ secrets.TB_LICENSE }}
     - name: Build with Gradle
       run: ./gradlew clean build '-Pvaadin.productionMode' --stacktrace --info --no-daemon
 
