@@ -17,8 +17,6 @@ jobs:
         with:
           # The Gradle wrapper's version (already the default, putting it here to clarity)
           gradle-version: wrapper
-          # Removing unused files from Gradle User Home before saving to cache (i.e. older versions of gradle)
-          gradle-home-cache-cleanup: true
           # Cache downloaded JDKs in addition to the default directories.
           gradle-home-cache-includes: |
             caches
@@ -34,4 +32,9 @@ jobs:
         env:
           GRADLE_ENCRYPTION_KEY: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
         run: ./gradlew build '-Pvaadin.productionMode' --stacktrace --info --no-daemon --scan
-
+      - name: Upload build reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: build-reports
+          path: "**/build/reports/"
