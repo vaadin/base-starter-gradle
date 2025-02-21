@@ -4,6 +4,9 @@ buildscript {
         maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
         maven { url "https://plugins.gradle.org/m2/" }
     }
+    dependencies {
+        classpath('com.vaadin:flow-gradle-plugin:24.7.21022-SNAPSHOT')
+    }
     configurations.classpath {
         exclude group: 'com.vaadin', module: 'hilla-engine-core'
     }
