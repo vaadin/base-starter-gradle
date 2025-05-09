@@ -11,7 +11,7 @@ buildscript {
 
 plugins {
     id 'war'
-    id 'org.gretty' version '4.1.1'
+    id 'org.gretty' version '4.1.4'
     id 'com.vaadin'
 }
 
@@ -25,7 +25,7 @@ repositories {
 
 gretty {
     contextPath = "/"
-    servletContainer = 'jetty11'
+    servletContainer = 'tomcat10'
 }
 
 // The following pnpmEnable = false is not needed as npm is used by default,
