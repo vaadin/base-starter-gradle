@@ -40,7 +40,7 @@ jobs:
     - name: Build and Test with Gradle
       run: ./gradlew clean build -Pvaadin.productionMode --stacktrace --info --no-daemon -Pit -Dcom.vaadin.testbench.Parameters.headless=true
     - name: Publish Test Results
-      if: always()
+      if: ${{ always() && runner.os == 'Linux' }}
       uses: EnricoMi/publish-unit-test-result-action@v2
       with:
         files: build/test-results/test/TEST-*.xml
