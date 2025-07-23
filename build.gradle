@@ -47,11 +47,10 @@ dependencies {
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
     implementation "org.slf4j:slf4j-simple:2.0.7"
 
-    // TestBench & Selenium
+    // JUnit & TestBench
     testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
     testImplementation("com.vaadin:vaadin-testbench-junit5:$vaadinVersion")
-    testRuntimeOnly("org.seleniumhq.selenium:selenium-chrome-driver:4.19.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.2")
 }
 
