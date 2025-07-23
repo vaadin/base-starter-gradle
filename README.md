@@ -27,6 +27,15 @@ Run the following command in this repo:
 
 Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
 
+## Running tests
+
+In order to run integration tests you need to add the `it` option:
+
+```bash
+./gradlew integrationTest -Pit
+```
+
+
 ## Building In Production Mode
 
 Simply run the following command in this repo:
@@ -34,6 +43,13 @@ Simply run the following command in this repo:
 ```bash
 ./gradlew clean build -Pvaadin.productionMode
 ```
+
+If you want to run tests at the same time:
+
+```bash
+./gradlew clean build -Pvaadin.productionMode -Pit
+```
+
 
 That will build this app in production mode as a WAR archive; please find the
 WAR file in `build/libs/base-starter-gradle.war`. You can run the WAR file
