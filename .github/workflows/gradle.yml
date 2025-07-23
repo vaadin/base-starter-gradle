@@ -13,6 +13,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+    - name: Pro Key
+      run: |
+        [ -z "${{secrets.TB_LICENSE}}" ] && exit 1
+        mkdir -p ~/.vaadin/
+        echo "${{secrets.TB_LICENSE}}" | jq -Rn 'input | split("/") as $parts | {username: $parts[0], proKey: $parts[1]}' > ~/.vaadin/proKey
     - uses: actions/checkout@v1
     - name: Set up JDK ${{ matrix.java }}
       uses: actions/setup-java@v1
