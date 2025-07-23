@@ -63,6 +63,7 @@ tasks.register('integrationTest', Test) {
     testClassesDirs = sourceSets.test.output.classesDirs
     classpath = sourceSets.test.runtimeClasspath
     shouldRunAfter test
+    systemProperty "com.vaadin.testbench.Parameters.headless", System.getProperty("com.vaadin.testbench.Parameters.headless", "false")
     mustRunAfter("appStart")
 }
 

@@ -35,6 +35,8 @@ In order to run integration tests you need to add the `it` option:
 ./gradlew integrationTest -Pit
 ```
 
+Then you can check results in the `build/reports/tests/integrationTest/index.html` file
+
 
 ## Building In Production Mode
 
@@ -71,6 +73,13 @@ To build your app for production in CI, just run:
 ```bash
 ./gradlew clean build -Pvaadin.productionMode
 ```
+
+To build and run ITs at the same time run:
+
+```bash
+./gradlew clean build -Pvaadin.productionMode -Pit -Dcom.vaadin.testbench.Parameters.headless=true
+```
+
 
 ## Running/Debugging In Intellij Ultimate With Tomcat in Development Mode
 
