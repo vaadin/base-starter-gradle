@@ -64,6 +64,7 @@ tasks.register('integrationTest', Test) {
     classpath = sourceSets.test.runtimeClasspath
     shouldRunAfter test
     systemProperty "com.vaadin.testbench.Parameters.headless", System.getProperty("com.vaadin.testbench.Parameters.headless", "false")
+    systemProperty "com.vaadin.testbench.Parameters.chromeOptions", System.getProperty("com.vaadin.testbench.Parameters.chromeOptions", "")
     mustRunAfter("appStart")
 }
 
