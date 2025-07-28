@@ -50,4 +50,4 @@ jobs:
       if: ${{ !env.ACT && always() && runner.os == 'Linux' }}
       uses: EnricoMi/publish-unit-test-result-action@v2
       with:
-        files: build/test-results/test/TEST-*.xml
+        files: build/test-results/**/TEST-*.xml
