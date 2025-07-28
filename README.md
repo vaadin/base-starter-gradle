@@ -29,7 +29,7 @@ Now you can open the [http://localhost:8080](http://localhost:8080) with your br
 
 ## Running tests
 
-In order to run integration tests you need to add the `it` option:
+In order to run integration tests you need to add the `it` gradle parameter:
 
 ```bash
 ./gradlew integrationTest -Pit
