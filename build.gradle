@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
+        maven { url "https://maven.vaadin.com/vaadin-prereleases" }
         maven { url "https://plugins.gradle.org/m2/" }
     }
     configurations.classpath {
@@ -19,7 +19,7 @@ defaultTasks("build")
 
 repositories {
     mavenCentral()
-    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
+    maven { url "https://maven.vaadin.com/vaadin-prereleases" }
     maven { url "https://plugins.gradle.org/m2/" }
 }
 
@@ -46,4 +46,29 @@ dependencies {
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
     implementation "org.slf4j:slf4j-simple:2.0.7"
+
+    // JUnit & TestBench
+    testImplementation(platform("org.junit:junit-bom:5.10.2"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testImplementation("com.vaadin:vaadin-testbench-junit5:$vaadinVersion")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.2")
+}
+
+// This task runs all tests (unit + integration) when -Pit is passed
+tasks.register('integrationTest', Test) {
+    description = 'Runs all tests including TestBench (enabled only with -Pit)'
+    group = 'verification'
+    onlyIf { project.hasProperty('it') }
+    useJUnitPlatform()
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    shouldRunAfter test
+    systemProperty "com.vaadin.testbench.Parameters.headless", System.getProperty("com.vaadin.testbench.Parameters.headless", "false")
+    systemProperty "com.vaadin.testbench.Parameters.chromeOptions", System.getProperty("com.vaadin.testbench.Parameters.chromeOptions", "")
+    mustRunAfter("appStart")
+}
+
+// Optional: link to build if profile is set
+if (project.hasProperty("it")) {
+    build.dependsOn integrationTest
 }
