@@ -30,7 +30,7 @@ gretty {
 
 // The following pnpmEnable = false is not needed as npm is used by default,
 // this is just an example of how to configure the Gradle Vaadin Plugin:
-// for more configuraion options please see: https://vaadin.com/docs/latest/guide/start/gradle/#all-options
+// for more configuraion options please see: https://vaadin.com/docs/latest/getting-started/start/alternatives/gradle#all-options
 vaadin {
     pnpmEnable = false
 }
