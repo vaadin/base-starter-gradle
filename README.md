@@ -4,7 +4,7 @@ This project demos the possibility of having Vaadin project in npm+webpack mode 
 Please see the [Starting a Vaadin project using Gradle](https://vaadin.com/docs/latest/getting-started/project/gradle) for the documentation.
 
 Prerequisites:
-* Java 17 or higher
+* Java 21 or higher
 * Git
 * (Optionally): Intellij Ultimate
 * (Optionally): Node.js and npm, if you have JavaScript/TypeScript customisations in your project. 
@@ -14,7 +14,7 @@ Prerequisites:
 
 ## Vaadin Versions
 
-* The [v24](https://github.com/vaadin/base-starter-gradle) branch (the default one) contains the example app for Vaadin latest version
+* The [v25](https://github.com/vaadin/base-starter-gradle) branch (the default one) contains the example app for Vaadin latest version
 * See other branches for other Vaadin versions.
 
 ## Running With Gretty In Development Mode

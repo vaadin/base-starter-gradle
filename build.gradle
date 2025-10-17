@@ -11,7 +11,7 @@ buildscript {
 
 plugins {
     id 'war'
-    id 'org.gretty' version '4.1.1'
+    id 'org.gretty' version '4.1.10'
     id 'com.vaadin'
 }
 
@@ -53,7 +53,9 @@ dependencies {
     testImplementation("com.vaadin:vaadin-testbench-junit5:$vaadinVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.2")
 }
-
+tasks.test.configure {
+    failOnNoDiscoveredTests = false
+}
 // This task runs all tests (unit + integration) when -Pit is passed
 tasks.register('integrationTest', Test) {
     description = 'Runs all tests including TestBench (enabled only with -Pit)'
