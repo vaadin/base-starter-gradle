@@ -43,13 +43,13 @@ Then you can check results in the `build/reports/tests/integrationTest/index.htm
 Simply run the following command in this repo:
 
 ```bash
-./gradlew clean build -Pvaadin.productionMode
+./gradlew clean build
 ```
 
 If you want to run tests at the same time:
 
 ```bash
-./gradlew clean build -Pvaadin.productionMode -Pit
+./gradlew clean build -Pit
 ```
 
 
@@ -71,13 +71,13 @@ Usually the CI images will not have node.js+npm available. Luckily Vaadin will d
 To build your app for production in CI, just run:
 
 ```bash
-./gradlew clean build -Pvaadin.productionMode
+./gradlew clean build
 ```
 
 To build and run ITs at the same time run:
 
 ```bash
-./gradlew clean build -Pvaadin.productionMode -Pit -Dcom.vaadin.testbench.Parameters.headless=true
+./gradlew clean build -Pit -Dcom.vaadin.testbench.Parameters.headless=true
 ```
 
 
