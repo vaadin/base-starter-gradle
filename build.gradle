@@ -30,17 +30,21 @@ gretty {
 
 // The following pnpmEnable = false is not needed as npm is used by default,
 // this is just an example of how to configure the Gradle Vaadin Plugin:
-// for more configuraion options please see: https://vaadin.com/docs/latest/guide/start/gradle/#all-options
+// for more configuration options please see: https://vaadin.com/docs/latest/guide/start/gradle/#all-options
 vaadin {
     pnpmEnable = false
+    productionMode = gradle.startParameter.taskNames.any {
+        ["build"].contains(it)
+    }
 }
 
 dependencies {
     implementation enforcedPlatform("com.vaadin:vaadin-bom:$vaadinVersion")
 
     // Vaadin
-    implementation("com.vaadin:vaadin-core") {
-        exclude group: 'com.vaadin', module: 'hilla-dev'
+    implementation("com.vaadin:vaadin-core")
+    if (gradle.startParameter.taskNames.contains('appRun')) {
+        implementation("com.vaadin:vaadin-dev")
     }
 
     // logging
