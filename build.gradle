@@ -17,6 +17,11 @@ plugins {
 
 defaultTasks("build")
 
+configurations {
+    developmentOnly
+    runtimeClasspath.extendsFrom developmentOnly
+}
+
 repositories {
     mavenCentral()
     maven { url "https://maven.vaadin.com/vaadin-prereleases" }
