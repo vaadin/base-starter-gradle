@@ -44,6 +44,7 @@ dependencies {
     // Vaadin
     implementation("com.vaadin:vaadin-core")
     if (gradle.startParameter.taskNames.contains('appRun')) {
+        implementation("net.java.dev.jna:jna:5.18.1")
         implementation("com.vaadin:vaadin-dev")
     }
 
