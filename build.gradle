@@ -41,6 +41,7 @@ vaadin {
 }
 
 dependencies {
+    developmentOnly 'com.vaadin:vaadin-dev'
     implementation enforcedPlatform("com.vaadin:vaadin-bom:$vaadinVersion")
 
     // Vaadin
