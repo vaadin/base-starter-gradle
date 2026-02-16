@@ -43,7 +43,7 @@ dependencies {
 
     // Vaadin
     implementation("com.vaadin:vaadin-core")
-    if (gradle.startParameter.taskNames.contains('appRun')) {
+    if (gradle.startParameter.taskNames.any { it in ['appRun', 'jettyStart', 'jettyRun'] }) {
         implementation("com.vaadin:vaadin-dev")
     }
 
