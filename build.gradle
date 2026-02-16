@@ -11,7 +11,7 @@ buildscript {
 
 plugins {
     id 'war'
-    id 'org.gretty' version '4.1.10'
+    id 'org.gretty' version '5.0.1'
     id 'com.vaadin'
 }
 
@@ -25,7 +25,7 @@ repositories {
 
 gretty {
     contextPath = "/"
-    servletContainer = 'jetty11'
+    servletContainer = 'jetty12'
 }
 
 // The following pnpmEnable = false is not needed as npm is used by default,
@@ -43,7 +43,7 @@ dependencies {
 
     // Vaadin
     implementation("com.vaadin:vaadin-core")
-    if (gradle.startParameter.taskNames.contains('appRun')) {
+    if (gradle.startParameter.taskNames.any { it in ['appRun', 'jettyStart', 'jettyRun'] }) {
         implementation("com.vaadin:vaadin-dev")
     }
 
