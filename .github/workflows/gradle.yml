@@ -21,12 +21,12 @@ jobs:
         [ -z "${{secrets.TB_LICENSE}}" ] && exit 1
         mkdir -p ~/.vaadin/
         echo "${{secrets.TB_LICENSE}}" | jq -Rn 'input | split("/") as $parts | {username: $parts[0], proKey: $parts[1]}' > ~/.vaadin/proKey
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v5
     - uses: actions/setup-node@v4
       with:
         node-version: '21'
     - name: Set up JDK ${{ matrix.java }}
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v5
       with:
         java-version: ${{ matrix.java }}
     - name: Cache Gradle packages
