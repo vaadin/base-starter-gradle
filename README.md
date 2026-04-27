@@ -55,12 +55,13 @@ If you want to run tests at the same time:
 
 That will build this app in production mode as a WAR archive; please find the
 WAR file in `build/libs/base-starter-gradle.war`. You can run the WAR file
-by using [Jetty Runner](https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-runner):
+by using [Jetty EE10 Runner](https://mvnrepository.com/artifact/org.eclipse.jetty.ee10/jetty-ee10-runner)
+(Vaadin 25 requires Jetty 12+ for Jakarta Servlet 6 support):
 
 ```bash
 cd build/libs/
-wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-runner/11.0.15/jetty-runner-11.0.15.jar
-java -jar jetty-runner-11.0.15.jar base-starter-gradle.war
+wget https://repo1.maven.org/maven2/org/eclipse/jetty/ee10/jetty-ee10-runner/12.0.34/jetty-ee10-runner-12.0.34.jar
+java -jar jetty-ee10-runner-12.0.34.jar base-starter-gradle.war
 ```
 
 Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
